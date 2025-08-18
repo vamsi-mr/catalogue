@@ -35,6 +35,15 @@ pipeline {
                 }
             }
         }
+        stage('Unit Testing') {
+            steps {
+                script {
+                    sh """
+                        echo "Unit Testing"
+                    """
+                }
+            }
+        }
         stage('Docker Build') {
             steps {
                 script {
@@ -44,10 +53,10 @@ pipeline {
                             docker build -t ${ACC_ID}.dkr.ecr.us-east-1.amazonaws.com/${PROJECT}/${COMPONENT}:${appVersion} .
                             docker push ${ACC_ID}.dkr.ecr.us-east-1.amazonaws.com/${PROJECT}/${COMPONENT}:${appVersion}
                         """
-                    }    
+                    }
                 }
             }
-        }        
+        }
     }
 
     post {
@@ -63,4 +72,3 @@ pipeline {
         }
     }
 }
-
