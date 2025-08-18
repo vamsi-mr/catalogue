@@ -22,12 +22,11 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
+        stage('Installing Dependencies') {
             steps {
                 script {
                     sh """
-                        echo "Hello Testing..."
-                        env
+                        npm install
                     """
                 }
             }
